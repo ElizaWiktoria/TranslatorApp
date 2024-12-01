@@ -4,28 +4,28 @@
     ViewData["Title"] = "Translate form";
 }
 
-<h2>Translation form</h2>
+<h2>@ViewData["Title"]</h2>
 
-<form style="display:flex; flex-direction:column" method="post" asp-action="Submit">
-    <div class="card">
+<div class="card">
+    <form style="display:flex; flex-direction:column" method="post" asp-action="Submit">
         <div class="card-body">
-            <div style="padding: 10px">
+            <div>
                 <label for="userInput" required>Text for translation:</label>
-                <input type="text" id="userInput" name="userInput" />
+                <textarea id="userInput" name="userInput" class="form-control" rows="10"></textarea>
             </div>
             <div style="padding: 10px">
                 <label for="language">Choose a language:</label>
-                <select name="language" id="language">
+                <select id="inputState" class="form-control" name="language" id="language">
                     @foreach (var language in Enum.GetValues(typeof(Language)))
                     {
-                        <option value="@language">@language</option>
+                        <option value="@language" selected>@language</option>
                     }
                 </select>
             </div>
             <button type="submit" class="btn btn-primary" style="margin: 5px;">Translate</button>
         </div>
-    </div>
-</form>
+    </form>
+</div>
 
 @if (ViewData["Message"] != null)
 {
