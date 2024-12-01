@@ -8,9 +8,9 @@
     <button id="clearSearchButton" type="submit" class="btn btn-primary" style="width: 150px; margin: 5px;">Clear filters</button>
 </div>
 <div id="history-container">
-    <table class="table table-hover" id="myTable">
+    <table class="table table-hover">
         <thead">
-            <tr class="sticky-header" class="d-flex">
+            <tr class="sticky-header">
                 <th class="col-4">User text</th>
                 <th class="col-3">Language</th>
                 <th class="col-4">Translated text</th>
@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr id="searchRow">
+                <tr id="searchRow">
                 <form id="searchForm" asp-action="SearchHistory">
                     <td><input id="userInputSearch" name="userInputSearch" type="text" placeholder="Search for text.." style="width:80%;"></td>
                     <td><input id="languageSearch" name="languageSearch" type="text" placeholder="Search for language.." style="width:80%;"></td>
@@ -65,17 +65,17 @@
 </script>
 
 <style>
-    #searchRow {
-        position: sticky;
-        top: 64px;
-        background: white;
-    }
-
     .sticky-header {
         height: 50px;
         position: sticky;
         top: 0;
-        background: #a1a1a1
+        background: #a1a1a1;
+    }
+
+    #searchRow {
+        position: sticky;
+        top: 64px;
+        background: white;
     }
 
     #history-container {
@@ -94,5 +94,4 @@
     tr:nth-child(even) {
         background-color: #f2f2f2;
     }
-
 </style>
