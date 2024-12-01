@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "History";
+    ViewData["Filter text"] = "Close filters ▲";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div id="history-container">
+    <table class="table table-hover" id="myTable">
+        <thead">
+            <tr class="sticky-header">
+                <th style="width:38%;">User text</th>
+                <th style="width:16%;">Language</th>
+                <th style="width:36%;">Translated text</th>
+                <th id="filterText" class="hover-effect" style="width:12%;" onclick="toggleRow()">@ViewData["Filter text"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="searchRow">
+                <form asp-action="SearchHistory">
+                    <td><input id="userInputSearch" name="userInputSearch" type="text" placeholder="Search for text.." style="width:80%;"></td>
+                    <td><input id="languageSearch" name="languageSearch" type="text" placeholder="Search for language.." style="width:80%;"></td>
+                    <td><input id="translatedTextSearch" name="translatedTextSearch" type="text" placeholder="Search for translation.." style="width:80%;"></td>
+                    <td><button type="submit" class="btn btn-primary" style="width: 70px;">Filter</button></td>
+                </form>
+            </tr>
+            @if (Model.translations != null)
+            {
+                @foreach (var translation in Model.translations)
+                {
+                    <tr>
+                        <td>@translation.UserInput</td>
+                        <td>@translation.Language</td>
+                        <td>@translation.TranslatedText</td>
+                        <td></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    let isRowVisible = true;
+    const toggleRow = () => {
+        const row = document.getElementById("searchRow");
+        const filterText = document.getElementById("filterText");
+
+        isRowVisible = !isRowVisible;
+        row.style.display = isRowVisible ? "" : "none";
+        filterText.innerText = isRowVisible ? "Close filters ▲" : "Open filters ▼";
+    };
+</script>
+
+<style>
+    #searchRow {
+        position: sticky;
+        top: 50px;
+        background: white;
+    }
+
+    .sticky-header {
+        height: 50px;
+        position: sticky;
+        top: 0;
+        background: #a1a1a1
+    }
+
+    #history-container {
+        height: 75vh;
+        overflow-y: scroll;
+    }
+
+    .hover-effect {
+        cursor: pointer;
+    }
+
+        .hover-effect:hover {
+            background-color: #a8a8a8;
+        }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+</style>
