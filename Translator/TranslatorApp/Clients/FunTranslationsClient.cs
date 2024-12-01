@@ -1,7 +1,5 @@
-﻿using Azure.Core;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Text;
-using System.Text.Json;
 using TranslatorApp.Clients.Translate;
 
 namespace TranslatorApp.Clients

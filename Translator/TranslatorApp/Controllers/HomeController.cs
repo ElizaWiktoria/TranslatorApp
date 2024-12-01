@@ -34,7 +34,7 @@ namespace TranslatorApp.Controllers
 
                 var translations = _translatationService.GetTranslationHistory(searchParameters);
                 return View(new { translations });
-            }   
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while retrieving translation history.");
