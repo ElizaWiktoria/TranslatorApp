@@ -4,6 +4,9 @@
 }
 
 <h1>@ViewData["Title"]</h1>
+<div>
+    <button id="clearSearchButton" type="submit" class="btn btn-primary" style="width: 150px; margin: 5px;">Clear filters</button>
+</div>
 <div id="history-container">
     <table class="table table-hover" id="myTable">
         <thead">
@@ -16,7 +19,7 @@
         </thead>
         <tbody>
             <tr id="searchRow">
-                <form asp-action="SearchHistory">
+                <form id="searchForm" asp-action="SearchHistory">
                     <td><input id="userInputSearch" name="userInputSearch" type="text" placeholder="Search for text.." style="width:80%;"></td>
                     <td><input id="languageSearch" name="languageSearch" type="text" placeholder="Search for language.." style="width:80%;"></td>
                     <td><input id="translatedTextSearch" name="translatedTextSearch" type="text" placeholder="Search for translation.." style="width:80%;"></td>
@@ -40,7 +43,9 @@
 </div>
 
 <script type="text/javascript">
+
     let isRowVisible = true;
+
     const toggleRow = () => {
         const row = document.getElementById("searchRow");
         const filterText = document.getElementById("filterText");
@@ -49,6 +54,14 @@
         row.style.display = isRowVisible ? "" : "none";
         filterText.innerText = isRowVisible ? "Close filters ▲" : "Open filters ▼";
     };
+
+    document.getElementById('clearSearchButton').addEventListener('click', function () {
+        document.getElementById('userInputSearch').value = '';
+        document.getElementById('languageSearch').value = '';
+        document.getElementById('translatedTextSearch').value = '';
+
+        document.getElementById('searchForm').submit();
+    });
 </script>
 
 <style>

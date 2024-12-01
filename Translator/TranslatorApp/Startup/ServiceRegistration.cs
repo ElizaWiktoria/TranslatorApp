@@ -11,6 +11,7 @@ namespace TranslatorApp.Startup
         {
             services.AddControllersWithViews();
             var serviceProvider = services.BuildServiceProvider();
+
             var logger = serviceProvider.GetService<ILogger<HomeController>>();
             services.AddSingleton(typeof(ILogger), logger);
 

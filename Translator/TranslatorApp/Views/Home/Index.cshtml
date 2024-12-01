@@ -7,20 +7,24 @@
 <h2>Translation form</h2>
 
 <form style="display:flex; flex-direction:column" method="post" asp-action="Submit">
-    <div style="padding: 10px">
-        <label for="userInput" required>Text for translation:</label>
-        <input type="text" id="userInput" name="userInput" />
+    <div class="card">
+        <div class="card-body">
+            <div style="padding: 10px">
+                <label for="userInput" required>Text for translation:</label>
+                <input type="text" id="userInput" name="userInput" />
+            </div>
+            <div style="padding: 10px">
+                <label for="language">Choose a language:</label>
+                <select name="language" id="language">
+                    @foreach (var language in Enum.GetValues(typeof(Language)))
+                    {
+                        <option value="@language">@language</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin: 5px;">Translate</button>
+        </div>
     </div>
-    <div style="padding: 10px">
-        <label for="language">Choose a language:</label>
-        <select name="language" id="language">
-            @foreach (var language in Enum.GetValues(typeof(Language)))
-            {
-                <option value="@language">@language</option>
-            }
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Translate</button>
 </form>
 
 @if (ViewData["Message"] != null)

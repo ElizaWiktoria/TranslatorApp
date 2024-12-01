@@ -28,7 +28,7 @@ namespace TranslatorApp.Services
             var translatedText = await _funTranslationsClient.Translate(userInput, language);
             if (translatedText == null)
             {
-                return "Translation was unsuccessful. Please try again later.";
+                return "Translation was unsuccessful due to translation service problems. Please try again later.";
             }
 
             try
@@ -57,7 +57,7 @@ namespace TranslatorApp.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while saving translation to database.");
-                return translatedText;
+                return $"Translation: {translatedText}";
             }
         }
 
@@ -71,7 +71,7 @@ namespace TranslatorApp.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An error occurred while getting translation history from database.");
+                _logger.LogError(ex, "An error occurred while retrieving translation history from database.");
                 return [];
             }
         }
